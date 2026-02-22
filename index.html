@@ -53,10 +53,10 @@
         <div class="card-title">BTC 抄底模型</div>
         <div class="card-arrow">▼</div>
       </div>
-      <div class="card-value status-mid">4/6 满足</div>
+      <div class="card-value status-mid" id="val-btc">3/6 满足</div>
       <div class="card-detail">
-        评级：中 -- 分批建仓信号<br>
-        <span style="color:#60a5fa; font-weight:600;">$68,334</span> <span style="color:#666;">|</span> 建议仓位 10-20%
+        评级：<span id="btc-rating">弱偏中</span><br>
+        <span style="color:#60a5fa; font-weight:600;" id="btc-price">$67,633</span> <span style="color:#666;">|</span> <span id="btc-position">建议仓位 5-10%</span>
       </div>
       <div class="tag-row"><span class="tag tag-blue">每天 9AM</span><span class="tag tag-time" id="ts-btc">上次更新：02-22 09:00</span></div>
 
@@ -64,27 +64,27 @@
         <div class="section-title">六大指标详情</div>
         <div class="indicator">
           <span class="indicator-name">K 线 RSI（周线 &lt; 30）</span>
-          <span class="indicator-value indicator-met">20.2 -- 满足</span>
+          <span class="indicator-value indicator-met" id="btc-ind-0">日线 36.9 / 周线 20.2 -- 满足</span>
         </div>
         <div class="indicator">
           <span class="indicator-name">成交量萎缩（&lt; 30 日均量）</span>
-          <span class="indicator-value indicator-met">0.39x -- 满足</span>
+          <span class="indicator-value indicator-met" id="btc-ind-1">0.35x -- 满足</span>
         </div>
         <div class="indicator">
           <span class="indicator-name">MVRV 比率（&lt; 1.0）</span>
-          <span class="indicator-value indicator-unmet">1.24 -- 不满足</span>
+          <span class="indicator-value indicator-unmet" id="btc-ind-2">1.24 -- 不满足</span>
         </div>
         <div class="indicator">
           <span class="indicator-name">恐惧指数（&gt; 75）</span>
-          <span class="indicator-value indicator-met">92 -- 满足</span>
+          <span class="indicator-value indicator-met" id="btc-ind-3">FGI 9 -- 满足</span>
         </div>
         <div class="indicator">
           <span class="indicator-name">矿机关机价（接近或低于）</span>
-          <span class="indicator-value indicator-unmet">$68K vs $45-55K -- 不满足</span>
+          <span class="indicator-value indicator-unmet" id="btc-ind-4">$67.6K vs $45-55K -- 不满足</span>
         </div>
         <div class="indicator">
           <span class="indicator-name">LTH 长期持有者行为</span>
-          <span class="indicator-value indicator-met">SOPR &lt; 1 投降卖出 -- 满足</span>
+          <span class="indicator-value indicator-unmet" id="btc-ind-5">减持中 -- 不满足</span>
         </div>
 
         <div class="section-title">触发条件</div>
@@ -114,7 +114,7 @@
         <div class="card-title">AI 前沿速报</div>
         <div class="card-arrow">▼</div>
       </div>
-      <div class="card-value status-ok">10 条</div>
+      <div class="card-value status-ok" id="val-report">10 条</div>
       <div class="card-detail">
         新项目 + OpenClaw 案例<br>
         三渠道搜索：Lists + 关注 + 关键词
@@ -155,7 +155,7 @@
         <div class="card-title">知识库</div>
         <div class="card-arrow">▼</div>
       </div>
-      <div class="card-value status-purple">20 条</div>
+      <div class="card-value status-purple" id="val-kb">20 条</div>
       <div class="card-detail">
         4 链接 | 5 决定 | 6 笔记<br>
         2 人物 | 2 推文 | 1 想法
@@ -206,7 +206,7 @@
         <div class="card-title">安全审查委员会</div>
         <div class="card-arrow">▼</div>
       </div>
-      <div class="card-value status-ok">正常</div>
+      <div class="card-value status-ok" id="val-security">正常</div>
       <div class="card-detail">
         上次检查：今天 17:26<br>
         发现 2 个问题（均已修复）
@@ -258,7 +258,7 @@
         <div class="card-title">定时任务</div>
         <div class="card-arrow">▼</div>
       </div>
-      <div class="card-value status-ok">8 个</div>
+      <div class="card-value status-ok" id="val-cron">8 个</div>
       <div class="card-detail">
         AI 速报 | BTC 模型 | 安全审查<br>
         币圈研究 | AI 研究 | 任务清单
@@ -308,7 +308,7 @@
         <div class="card-title">系统健康</div>
         <div class="card-arrow">▼</div>
       </div>
-      <div class="card-value status-ok">4%</div>
+      <div class="card-value status-ok" id="val-health">4%</div>
       <div class="card-detail">
         电脑磁盘使用率：4%（健康）<br>
         代理服务：8082 端口运行中
@@ -356,7 +356,7 @@
       if (!wasActive) card.classList.add('active');
     }
 
-    // 自动加载时间戳
+    // 自动加载状态数据
     async function loadStatus() {
       try {
         const res = await fetch('status.json?t=' + Date.now());
@@ -368,6 +368,36 @@
             el.textContent = '上次更新：' + data[key].lastUpdate;
           }
         }
+        // 同步卡片主数值
+        const valueIds = { btc: 'val-btc', report: 'val-report', kb: 'val-kb', security: 'val-security', cron: 'val-cron', health: 'val-health' };
+        for (const [key, elId] of Object.entries(valueIds)) {
+          const el = document.getElementById(elId);
+          if (el && data[key]?.summary) {
+            el.textContent = data[key].summary;
+          }
+        }
+        // 加载 BTC 详细数据
+        try {
+          const btcRes = await fetch('btc-detail.json?t=' + Date.now());
+          if (btcRes.ok) {
+            const btc = await btcRes.json();
+            const detailEl = document.getElementById('btc-detail');
+            if (detailEl && btc.price) {
+              document.getElementById('btc-price').textContent = '$' + btc.price.toLocaleString();
+              document.getElementById('btc-position').textContent = btc.position || '';
+              document.getElementById('btc-rating').textContent = btc.rating || '';
+              // 更新六大指标
+              const indicators = btc.indicators || [];
+              indicators.forEach((ind, i) => {
+                const el = document.getElementById('btc-ind-' + i);
+                if (el) {
+                  el.textContent = ind.detail;
+                  el.className = 'indicator-value ' + (ind.met ? 'indicator-met' : 'indicator-unmet');
+                }
+              });
+            }
+          }
+        } catch(e) { /* btc-detail.json not available yet */ }
       } catch(e) { console.log('status.json not available'); }
     }
     loadStatus();

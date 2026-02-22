@@ -1,0 +1,15 @@
+{
+  "price": 67633,
+  "rating": "弱偏中",
+  "position": "建议仓位 5-10%",
+  "met": 3,
+  "total": 6,
+  "indicators": [
+    {"name": "RSI", "detail": "日线 36.9 / 周线 20.2 -- 满足", "met": true},
+    {"name": "成交量", "detail": "0.35x -- 满足", "met": true},
+    {"name": "MVRV", "detail": "1.24 -- 不满足", "met": false},
+    {"name": "恐惧指数", "detail": "FGI 9 -- 满足", "met": true},
+    {"name": "矿机关机价", "detail": "$67.6K vs $45-55K -- 不满足", "met": false},
+    {"name": "LTH", "detail": "减持中 -- 不满足", "met": false}
+  ]
+}

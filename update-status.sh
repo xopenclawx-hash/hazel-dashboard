@@ -33,6 +33,12 @@ with open('$STATUS_FILE', 'w') as f:
 # 更新 HTML 中对应的时间标签
 sed -i '' "s|id=\"ts-$MODULE\">上次更新：[^<]*<|id=\"ts-$MODULE\">上次更新：$NOW<|" "$HTML_FILE"
 
+# 如果是 btc 模块且有详细数据文件，复制过来
+BTC_DETAIL="$3"
+if [ "$MODULE" = "btc" ] && [ -n "$BTC_DETAIL" ] && [ -f "$BTC_DETAIL" ]; then
+  cp "$BTC_DETAIL" /Users/rickywang/Projects/hazel-demo/btc-detail.json
+fi
+
 echo "Updated $MODULE: $NOW"
 
 # 自动推送到 GitHub Pages
