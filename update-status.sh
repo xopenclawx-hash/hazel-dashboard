@@ -1,43 +1,40 @@
 #!/bin/bash
 # 更新 Hazel 状态面板的时间戳
-# 用法: update-status.sh <module> [summary]
+# 用法: update-status.sh <module> [summary] [details_json]
 # 模块: btc, report, kb, security, cron, health
 
 STATUS_FILE="/Users/rickywang/Projects/hazel-demo/status.json"
-HTML_FILE="/Users/rickywang/Projects/hazel-demo/index.html"
 MODULE="$1"
 SUMMARY="$2"
+DETAILS="$3"
 NOW=$(TZ='America/New_York' date '+%m-%d %H:%M')
 
 if [ -z "$MODULE" ]; then
-  echo "Usage: update-status.sh <btc|report|kb|security|cron|health> [summary]"
+  echo "Usage: update-status.sh <btc|report|kb|security|cron|health> [summary] [details_json]"
   exit 1
 fi
 
 # 更新 JSON
 python3 -c "
-import json
+import json, sys
 with open('$STATUS_FILE', 'r') as f:
     data = json.load(f)
 module = '$MODULE'
 if module not in data:
     data[module] = {}
 data[module]['lastUpdate'] = '$NOW'
-summary = '$SUMMARY'
+summary = '''$SUMMARY'''
 if summary:
     data[module]['summary'] = summary
+details = '''$DETAILS'''
+if details:
+    try:
+        data[module]['details'] = json.loads(details)
+    except json.JSONDecodeError as e:
+        print(f'Warning: invalid details JSON: {e}', file=sys.stderr)
 with open('$STATUS_FILE', 'w') as f:
     json.dump(data, f, indent=2, ensure_ascii=False)
 "
-
-# 更新 HTML 中对应的时间标签
-sed -i '' "s|id=\"ts-$MODULE\">上次更新：[^<]*<|id=\"ts-$MODULE\">上次更新：$NOW<|" "$HTML_FILE"
-
-# 如果是 btc 模块且有详细数据文件，复制过来
-BTC_DETAIL="$3"
-if [ "$MODULE" = "btc" ] && [ -n "$BTC_DETAIL" ] && [ -f "$BTC_DETAIL" ]; then
-  cp "$BTC_DETAIL" /Users/rickywang/Projects/hazel-demo/btc-detail.json
-fi
 
 echo "Updated $MODULE: $NOW"
 

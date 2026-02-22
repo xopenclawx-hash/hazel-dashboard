@@ -1,26 +1,100 @@
 {
   "btc": {
     "lastUpdate": "02-22 09:00",
-    "summary": "3/6 满足"
+    "summary": "3/6 满足",
+    "details": {
+      "rating": "弱偏中",
+      "price": "$67,633",
+      "position": "建议仓位 5-10%",
+      "indicators": [
+        {"name": "K 线 RSI（周线 < 30）", "value": "日线 36.9 / 周线 20.2 -- 满足", "met": true},
+        {"name": "成交量萎缩（< 30 日均量）", "value": "0.35x -- 满足", "met": true},
+        {"name": "MVRV 比率（< 1.0）", "value": "1.24 -- 不满足", "met": false},
+        {"name": "恐惧指数（> 75）", "value": "FGI 9 -- 满足", "met": true},
+        {"name": "矿机关机价（接近或低于）", "value": "$67.6K vs $45-55K -- 不满足", "met": false},
+        {"name": "LTH 长期持有者行为", "value": "减持中 -- 不满足", "met": false}
+      ]
+    }
   },
   "report": {
     "lastUpdate": "02-22 08:03",
-    "summary": "速报完成"
+    "summary": "速报完成",
+    "details": {
+      "channels": [
+        {"name": "渠道 1：Twitter Lists", "value": "86 人（AI Wizard + Brains）"},
+        {"name": "渠道 2：关注列表", "value": "95 人（@CentaurDragon76）"},
+        {"name": "渠道 3：关键词搜索", "value": "indie builder / hackathon / AI agent"}
+      ],
+      "criteria": "核心：\"谁做了什么好玩的东西\"（app、工具、产品、demo）\n\n排除：大厂新闻、LLM 讨论、纯观点评论、互相吹捧、红包活动、宏观新闻\n\n互动信号：搜大佬回复别人的内容，被回复的小账号往往是好项目\n\n后 2 条专搜：openclaw / nanoclaw / clawhub 的有趣 use case",
+      "schedule": "每天 8:00 AM / 4:00 PM / 12:00 AM（EST）"
+    }
   },
   "kb": {
     "lastUpdate": "02-21 19:06",
-    "summary": "20 条"
+    "summary": "20 条",
+    "details": {
+      "breakdown": {
+        "链接": 4,
+        "决定": 5,
+        "笔记": 6,
+        "人物": 2,
+        "推文": 2,
+        "想法": 1
+      },
+      "tech": {
+        "存储": "本地 SQLite",
+        "嵌入模型": "all-MiniLM-L6-v2（384 维）",
+        "搜索方式": "语义搜索 + 全文搜索"
+      }
+    }
   },
   "security": {
     "lastUpdate": "02-22 03:44",
-    "summary": "正常"
+    "summary": "正常",
+    "details": {
+      "checks": [
+        {"name": "1. Proxy 健康", "status": "正常", "met": true},
+        {"name": "2. Cron 任务状态", "status": "全部运行", "met": true},
+        {"name": "3. API Key 安全", "status": "无泄露", "met": true},
+        {"name": "4. 磁盘 + 数据库", "status": "4%，DB 完整", "met": true},
+        {"name": "5. 数据聚合风险", "status": "无风险", "met": true},
+        {"name": "6. 日志错误", "status": "0 条错误", "met": true}
+      ],
+      "fixes": [
+        "xapi API key 出现在 MEMORY.md 和日志 -> 已替换为 REDACTED",
+        "moltbook key 在 TOOLS.md 明文 -> 已替换",
+        "Key 转存至 ~/.config/xapi/credentials.json（权限 600）"
+      ]
+    }
   },
   "cron": {
     "lastUpdate": "02-22 12:51",
-    "summary": "时间已错开，避免 rate limit"
+    "summary": "时间已错开，避免 rate limit",
+    "details": {
+      "jobs": [
+        {"name": "AI 前沿速报", "schedule": "00:30 / 08:30 / 16:30 EST"},
+        {"name": "BTC 抄底模型", "schedule": "每天 09:15 EST"},
+        {"name": "安全审查委员会", "schedule": "每晚 03:30 EST"},
+        {"name": "币圈深度研究", "schedule": "每天 23:00 EST"},
+        {"name": "AI 深度研究", "schedule": "每天 01:00 EST"},
+        {"name": "每日报告推送", "schedule": "每天 08:00 EST"},
+        {"name": "每日任务清单", "schedule": "每天 09:00 EST"},
+        {"name": "Twitter List 同步", "schedule": "每 2 天"},
+        {"name": "OpenClaw 自动更新", "schedule": "每 5 天"}
+      ]
+    }
   },
   "health": {
     "lastUpdate": "02-21 22:58",
-    "summary": "系统正常"
+    "summary": "系统正常",
+    "details": {
+      "items": [
+        {"name": "磁盘", "value": "4%", "met": true},
+        {"name": "claude-proxy", "value": "运行中（:8082）", "met": true},
+        {"name": "活跃会话", "value": "7 个", "met": true},
+        {"name": "知识库 DB", "value": "完整性通过", "met": true},
+        {"name": "Session 文件", "value": "7 个 / 4.3MB", "met": true}
+      ]
+    }
   }
 }

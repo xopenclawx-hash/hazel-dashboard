@@ -53,59 +53,13 @@
         <div class="card-title">BTC 抄底模型</div>
         <div class="card-arrow">▼</div>
       </div>
-      <div class="card-value status-mid" id="val-btc">3/6 满足</div>
+      <div class="card-value status-mid" id="val-btc">--</div>
       <div class="card-detail">
-        评级：<span id="btc-rating">弱偏中</span><br>
-        <span style="color:#60a5fa; font-weight:600;" id="btc-price">$67,633</span> <span style="color:#666;">|</span> <span id="btc-position">建议仓位 5-10%</span>
+        评级：<span id="btc-rating">--</span><br>
+        <span style="color:#60a5fa; font-weight:600;" id="btc-price">--</span> <span style="color:#666;">|</span> <span id="btc-position">--</span>
       </div>
-      <div class="tag-row"><span class="tag tag-blue">每天 9AM</span><span class="tag tag-time" id="ts-btc">上次更新：02-22 09:00</span></div>
-
-      <div class="card-expanded">
-        <div class="section-title">六大指标详情</div>
-        <div class="indicator">
-          <span class="indicator-name">K 线 RSI（周线 &lt; 30）</span>
-          <span class="indicator-value indicator-met" id="btc-ind-0">日线 36.9 / 周线 20.2 -- 满足</span>
-        </div>
-        <div class="indicator">
-          <span class="indicator-name">成交量萎缩（&lt; 30 日均量）</span>
-          <span class="indicator-value indicator-met" id="btc-ind-1">0.35x -- 满足</span>
-        </div>
-        <div class="indicator">
-          <span class="indicator-name">MVRV 比率（&lt; 1.0）</span>
-          <span class="indicator-value indicator-unmet" id="btc-ind-2">1.24 -- 不满足</span>
-        </div>
-        <div class="indicator">
-          <span class="indicator-name">恐惧指数（&gt; 75）</span>
-          <span class="indicator-value indicator-met" id="btc-ind-3">FGI 9 -- 满足</span>
-        </div>
-        <div class="indicator">
-          <span class="indicator-name">矿机关机价（接近或低于）</span>
-          <span class="indicator-value indicator-unmet" id="btc-ind-4">$67.6K vs $45-55K -- 不满足</span>
-        </div>
-        <div class="indicator">
-          <span class="indicator-name">LTH 长期持有者行为</span>
-          <span class="indicator-value indicator-unmet" id="btc-ind-5">减持中 -- 不满足</span>
-        </div>
-
-        <div class="section-title">触发条件</div>
-        <div class="indicator">
-          <span class="indicator-name">4 个以上满足</span>
-          <span class="indicator-value">分批建仓（10-20%）</span>
-        </div>
-        <div class="indicator">
-          <span class="indicator-name">5 个以上满足</span>
-          <span class="indicator-value">重仓抄底（30-50%）</span>
-        </div>
-
-        <div class="section-title">数据来源</div>
-        <div class="card-detail">
-          RSI / 成交量：CoinGecko（免费）<br>
-          MVRV：CoinMetrics 社区版（免费）<br>
-          恐惧指数：Alternative.me（免费）<br>
-          矿机关机价：Blockchain.info + 估算<br>
-          LTH 供应：Twitter xapi 搜索 Glassnode/Bitfinex 报告
-        </div>
-      </div>
+      <div class="tag-row"><span class="tag tag-blue">每天 9AM</span><span class="tag tag-time" id="ts-btc">上次更新：--</span></div>
+      <div class="card-expanded" id="expanded-btc"></div>
     </div>
 
     <!-- AI 前沿速报 -->
@@ -114,39 +68,10 @@
         <div class="card-title">AI 前沿速报</div>
         <div class="card-arrow">▼</div>
       </div>
-      <div class="card-value status-ok" id="val-report">10 条</div>
-      <div class="card-detail">
-        新项目 + OpenClaw 案例<br>
-        三渠道搜索：Lists + 关注 + 关键词
-      </div>
-      <div class="tag-row"><span class="tag tag-green">每 8 小时</span><span class="tag tag-time" id="ts-report">上次更新：02-22 08:03</span></div>
-
-      <div class="card-expanded">
-        <div class="section-title">三大搜索渠道</div>
-        <div class="indicator">
-          <span class="indicator-name">渠道 1：Twitter Lists</span>
-          <span class="indicator-value">86 人（AI Wizard + Brains）</span>
-        </div>
-        <div class="indicator">
-          <span class="indicator-name">渠道 2：关注列表</span>
-          <span class="indicator-value">95 人（@CentaurDragon76）</span>
-        </div>
-        <div class="indicator">
-          <span class="indicator-name">渠道 3：关键词搜索</span>
-          <span class="indicator-value">indie builder / hackathon / AI agent</span>
-        </div>
-
-        <div class="section-title">筛选标准</div>
-        <div class="card-detail">
-          核心："谁做了什么好玩的东西"（app、工具、产品、demo）<br><br>
-          排除：大厂新闻、LLM 讨论、纯观点评论、互相吹捧、红包活动、宏观新闻<br><br>
-          互动信号：搜大佬回复别人的内容，被回复的小账号往往是好项目<br><br>
-          后 2 条专搜：openclaw / nanoclaw / clawhub 的有趣 use case
-        </div>
-
-        <div class="section-title">推送时间</div>
-        <div class="card-detail">每天 8:00 AM / 4:00 PM / 12:00 AM（EST）</div>
-      </div>
+      <div class="card-value status-ok" id="val-report">--</div>
+      <div class="card-detail" id="detail-report">--</div>
+      <div class="tag-row"><span class="tag tag-green">每 8 小时</span><span class="tag tag-time" id="ts-report">上次更新：--</span></div>
+      <div class="card-expanded" id="expanded-report"></div>
     </div>
 
     <!-- 知识库 -->
@@ -155,49 +80,10 @@
         <div class="card-title">知识库</div>
         <div class="card-arrow">▼</div>
       </div>
-      <div class="card-value status-purple" id="val-kb">20 条</div>
-      <div class="card-detail">
-        4 链接 | 5 决定 | 6 笔记<br>
-        2 人物 | 2 推文 | 1 想法
-      </div>
-      <div class="tag-row"><span class="tag tag-purple">自动摄取</span><span class="tag tag-time" id="ts-kb">上次更新：02-21 19:06</span></div>
-
-      <div class="card-expanded">
-        <div class="section-title">技术架构</div>
-        <div class="indicator">
-          <span class="indicator-name">存储</span>
-          <span class="indicator-value">本地 SQLite</span>
-        </div>
-        <div class="indicator">
-          <span class="indicator-name">嵌入模型</span>
-          <span class="indicator-value">all-MiniLM-L6-v2（384 维）</span>
-        </div>
-        <div class="indicator">
-          <span class="indicator-name">搜索方式</span>
-          <span class="indicator-value">语义搜索 + 全文搜索</span>
-        </div>
-
-        <div class="section-title">三大防护机制</div>
-        <div class="card-detail">
-          1. <strong>防压缩</strong> -- 关键信息存知识库而非 MEMORY.md，不会被对话压缩丢失<br><br>
-          2. <strong>遗忘曲线</strong> -- 每条有重要度（1-5）和访问次数，重要的排更前，长期没用的可清理<br><br>
-          3. <strong>数据聚合风险</strong> -- 安全审查每晚扫描，防止敏感信息碎片拼成完整隐私
-        </div>
-
-        <div class="section-title">使用方式</div>
-        <div class="card-detail">
-          发链接 -> 自动入库<br>
-          说"记住xxx" -> 存为笔记<br>
-          问"之前谁聊过xx" -> 语义搜索
-        </div>
-
-        <div class="section-title">快速检索</div>
-        <div style="display:flex; gap:0.5rem; margin-top:0.5rem;" onclick="event.stopPropagation()">
-          <input type="text" id="kb-search" placeholder="搜索知识库..." style="flex:1; padding:0.5rem 0.8rem; border-radius:8px; border:1px solid #2a2a4a; background:#0f0f1a; color:#e0e0e0; font-size:0.9rem; outline:none;" onkeydown="if(event.key==='Enter')searchKB()" onfocus="this.style.borderColor='#a78bfa'" onblur="this.style.borderColor='#2a2a4a'">
-          <button onclick="event.stopPropagation();searchKB()" style="padding:0.5rem 1rem; border-radius:8px; border:none; background:#a78bfa; color:#fff; cursor:pointer; font-size:0.9rem;">搜索</button>
-        </div>
-        <div id="kb-results" style="margin-top:0.8rem; font-size:0.85rem; color:#999;" onclick="event.stopPropagation()"></div>
-      </div>
+      <div class="card-value status-purple" id="val-kb">--</div>
+      <div class="card-detail" id="detail-kb">--</div>
+      <div class="tag-row"><span class="tag tag-purple">自动摄取</span><span class="tag tag-time" id="ts-kb">上次更新：--</span></div>
+      <div class="card-expanded" id="expanded-kb"></div>
     </div>
 
     <!-- 安全审查委员会 -->
@@ -206,50 +92,10 @@
         <div class="card-title">安全审查委员会</div>
         <div class="card-arrow">▼</div>
       </div>
-      <div class="card-value status-ok" id="val-security">正常</div>
-      <div class="card-detail">
-        上次检查：今天 17:26<br>
-        发现 2 个问题（均已修复）
-      </div>
-      <div class="tag-row"><span class="tag tag-green">每晚 3:30</span><span class="tag tag-time" id="ts-security">上次更新：02-22 03:44</span></div>
-
-      <div class="card-expanded">
-        <div class="section-title">六维审查</div>
-        <div class="indicator">
-          <span class="indicator-name">1. Proxy 健康</span>
-          <span class="indicator-value indicator-met">正常</span>
-        </div>
-        <div class="indicator">
-          <span class="indicator-name">2. Cron 任务状态</span>
-          <span class="indicator-value indicator-met">全部运行</span>
-        </div>
-        <div class="indicator">
-          <span class="indicator-name">3. API Key 安全</span>
-          <span class="indicator-value indicator-met">无泄露</span>
-        </div>
-        <div class="indicator">
-          <span class="indicator-name">4. 磁盘 + 数据库</span>
-          <span class="indicator-value indicator-met">4%，DB 完整</span>
-        </div>
-        <div class="indicator">
-          <span class="indicator-name">5. 数据聚合风险</span>
-          <span class="indicator-value indicator-met">无风险</span>
-        </div>
-        <div class="indicator">
-          <span class="indicator-name">6. 日志错误</span>
-          <span class="indicator-value indicator-met">0 条错误</span>
-        </div>
-
-        <div class="section-title">今日修复记录</div>
-        <div class="card-detail">
-          1. xapi API key 出现在 MEMORY.md 和日志 -> 已替换为 REDACTED<br>
-          2. moltbook key 在 TOOLS.md 明文 -> 已替换<br>
-          3. Key 转存至 ~/.config/xapi/credentials.json（权限 600）
-        </div>
-
-        <div class="section-title">处理原则</div>
-        <div class="card-detail">能自己修的直接修 -> 修不了的推 TG -> 没问题不打扰</div>
-      </div>
+      <div class="card-value status-ok" id="val-security">--</div>
+      <div class="card-detail" id="detail-security">--</div>
+      <div class="tag-row"><span class="tag tag-green">每晚 3:30</span><span class="tag tag-time" id="ts-security">上次更新：--</span></div>
+      <div class="card-expanded" id="expanded-security"></div>
     </div>
 
     <!-- 定时任务 -->
@@ -258,48 +104,10 @@
         <div class="card-title">定时任务</div>
         <div class="card-arrow">▼</div>
       </div>
-      <div class="card-value status-ok" id="val-cron">8 个</div>
-      <div class="card-detail">
-        AI 速报 | BTC 模型 | 安全审查<br>
-        币圈研究 | AI 研究 | 任务清单
-      </div>
-      <div class="tag-row"><span class="tag tag-green">全部运行中</span><span class="tag tag-time" id="ts-cron">上次更新：02-22 12:51</span></div>
-
-      <div class="card-expanded">
-        <div class="section-title">任务列表</div>
-        <div class="indicator">
-          <span class="indicator-name">AI 前沿速报</span>
-          <span class="indicator-value">8AM / 4PM / 12AM EST</span>
-        </div>
-        <div class="indicator">
-          <span class="indicator-name">BTC 抄底模型</span>
-          <span class="indicator-value">每天 9AM EST</span>
-        </div>
-        <div class="indicator">
-          <span class="indicator-name">安全审查委员会</span>
-          <span class="indicator-value">每晚 3:30AM EST</span>
-        </div>
-        <div class="indicator">
-          <span class="indicator-name">币圈深度研究</span>
-          <span class="indicator-value">每天 12AM EST</span>
-        </div>
-        <div class="indicator">
-          <span class="indicator-name">AI 深度研究</span>
-          <span class="indicator-value">每天 1AM EST</span>
-        </div>
-        <div class="indicator">
-          <span class="indicator-name">每日报告推送</span>
-          <span class="indicator-value">每天 8AM EST</span>
-        </div>
-        <div class="indicator">
-          <span class="indicator-name">每日任务清单</span>
-          <span class="indicator-value">每天 9AM EST</span>
-        </div>
-        <div class="indicator">
-          <span class="indicator-name">Twitter List 同步</span>
-          <span class="indicator-value">每 2 天</span>
-        </div>
-      </div>
+      <div class="card-value status-ok" id="val-cron">--</div>
+      <div class="card-detail" id="detail-cron">--</div>
+      <div class="tag-row"><span class="tag tag-green">全部运行中</span><span class="tag tag-time" id="ts-cron">上次更新：--</span></div>
+      <div class="card-expanded" id="expanded-cron"></div>
     </div>
 
     <!-- 系统健康 -->
@@ -308,42 +116,10 @@
         <div class="card-title">系统健康</div>
         <div class="card-arrow">▼</div>
       </div>
-      <div class="card-value status-ok" id="val-health">4%</div>
-      <div class="card-detail">
-        电脑磁盘使用率：4%（健康）<br>
-        代理服务：8082 端口运行中
-      </div>
-      <div class="tag-row"><span class="tag tag-green">系统正常</span><span class="tag tag-time" id="ts-health">上次更新：02-21 22:58</span></div>
-
-      <div class="card-expanded">
-        <div class="section-title">系统状态</div>
-        <div class="indicator">
-          <span class="indicator-name">磁盘</span>
-          <span class="indicator-value indicator-met">4%</span>
-        </div>
-        <div class="indicator">
-          <span class="indicator-name">claude-proxy</span>
-          <span class="indicator-value indicator-met">运行中（:8082）</span>
-        </div>
-        <div class="indicator">
-          <span class="indicator-name">活跃会话</span>
-          <span class="indicator-value">7 个</span>
-        </div>
-        <div class="indicator">
-          <span class="indicator-name">知识库 DB</span>
-          <span class="indicator-value indicator-met">完整性通过</span>
-        </div>
-        <div class="indicator">
-          <span class="indicator-name">Session 文件</span>
-          <span class="indicator-value">7 个 / 4.3MB</span>
-        </div>
-
-        <div class="section-title">架构</div>
-        <div class="card-detail">
-          Telegram -> OpenClaw -> claude-proxy(:8082) -> Claude Opus 4.6<br>
-          断路器保护：连续 3 次失败自动 fast-fail 60 秒
-        </div>
-      </div>
+      <div class="card-value status-ok" id="val-health">--</div>
+      <div class="card-detail" id="detail-health">--</div>
+      <div class="tag-row"><span class="tag tag-green">系统正常</span><span class="tag tag-time" id="ts-health">上次更新：--</span></div>
+      <div class="card-expanded" id="expanded-health"></div>
     </div>
 
   </div>
@@ -356,49 +132,140 @@
       if (!wasActive) card.classList.add('active');
     }
 
-    // 自动加载状态数据
+    function indicator(name, value, metClass) {
+      return '<div class="indicator"><span class="indicator-name">' + name + '</span><span class="indicator-value' + (metClass ? ' ' + metClass : '') + '">' + value + '</span></div>';
+    }
+
+    function sectionTitle(text) {
+      return '<div class="section-title">' + text + '</div>';
+    }
+
     async function loadStatus() {
       try {
         const res = await fetch('status.json?t=' + Date.now());
         const data = await res.json();
-        const ids = { btc: 'ts-btc', report: 'ts-report', kb: 'ts-kb', security: 'ts-security', cron: 'ts-cron', health: 'ts-health' };
-        for (const [key, elId] of Object.entries(ids)) {
-          const el = document.getElementById(elId);
-          if (el && data[key]?.lastUpdate) {
-            el.textContent = '上次更新：' + data[key].lastUpdate;
-          }
+
+        // Update timestamps and summary values
+        for (const key of ['btc','report','kb','security','cron','health']) {
+          const mod = data[key];
+          if (!mod) continue;
+          const tsEl = document.getElementById('ts-' + key);
+          if (tsEl && mod.lastUpdate) tsEl.textContent = '上次更新：' + mod.lastUpdate;
+          const valEl = document.getElementById('val-' + key);
+          if (valEl && mod.summary) valEl.textContent = mod.summary;
         }
-        // 同步卡片主数值
-        const valueIds = { btc: 'val-btc', report: 'val-report', kb: 'val-kb', security: 'val-security', cron: 'val-cron', health: 'val-health' };
-        for (const [key, elId] of Object.entries(valueIds)) {
-          const el = document.getElementById(elId);
-          if (el && data[key]?.summary) {
-            el.textContent = data[key].summary;
-          }
+
+        // === BTC ===
+        const btc = data.btc?.details;
+        if (btc) {
+          document.getElementById('btc-rating').textContent = btc.rating || '--';
+          document.getElementById('btc-price').textContent = btc.price || '--';
+          document.getElementById('btc-position').textContent = btc.position || '--';
+
+          let html = sectionTitle('六大指标详情');
+          (btc.indicators || []).forEach(ind => {
+            html += indicator(ind.name, ind.value, ind.met ? 'indicator-met' : 'indicator-unmet');
+          });
+          html += sectionTitle('触发条件');
+          html += indicator('4 个以上满足', '分批建仓（10-20%）');
+          html += indicator('5 个以上满足', '重仓抄底（30-50%）');
+          html += sectionTitle('数据来源');
+          html += '<div class="card-detail">RSI / 成交量：CoinGecko（免费）<br>MVRV：CoinMetrics 社区版（免费）<br>恐惧指数：Alternative.me（免费）<br>矿机关机价：Blockchain.info + 估算<br>LTH 供应：Twitter xapi 搜索 Glassnode/Bitfinex 报告</div>';
+          document.getElementById('expanded-btc').innerHTML = html;
         }
-        // 加载 BTC 详细数据
-        try {
-          const btcRes = await fetch('btc-detail.json?t=' + Date.now());
-          if (btcRes.ok) {
-            const btc = await btcRes.json();
-            const detailEl = document.getElementById('btc-detail');
-            if (detailEl && btc.price) {
-              document.getElementById('btc-price').textContent = '$' + btc.price.toLocaleString();
-              document.getElementById('btc-position').textContent = btc.position || '';
-              document.getElementById('btc-rating').textContent = btc.rating || '';
-              // 更新六大指标
-              const indicators = btc.indicators || [];
-              indicators.forEach((ind, i) => {
-                const el = document.getElementById('btc-ind-' + i);
-                if (el) {
-                  el.textContent = ind.detail;
-                  el.className = 'indicator-value ' + (ind.met ? 'indicator-met' : 'indicator-unmet');
-                }
-              });
-            }
+
+        // === Report ===
+        const report = data.report?.details;
+        if (report) {
+          document.getElementById('detail-report').innerHTML = '新项目 + OpenClaw 案例<br>三渠道搜索：Lists + 关注 + 关键词';
+
+          let html = sectionTitle('三大搜索渠道');
+          (report.channels || []).forEach(ch => {
+            html += indicator(ch.name, ch.value);
+          });
+          html += sectionTitle('筛选标准');
+          html += '<div class="card-detail">' + (report.criteria || '').replace(/\n\n/g, '<br><br>') + '</div>';
+          html += sectionTitle('推送时间');
+          html += '<div class="card-detail">' + (report.schedule || '') + '</div>';
+          document.getElementById('expanded-report').innerHTML = html;
+        }
+
+        // === KB ===
+        const kb = data.kb?.details;
+        if (kb) {
+          const bd = kb.breakdown || {};
+          const parts = Object.entries(bd).map(([k,v]) => v + ' ' + k);
+          document.getElementById('detail-kb').innerHTML = parts.join(' | ');
+
+          let html = sectionTitle('技术架构');
+          const tech = kb.tech || {};
+          for (const [k,v] of Object.entries(tech)) {
+            html += indicator(k, v);
           }
-        } catch(e) { /* btc-detail.json not available yet */ }
-      } catch(e) { console.log('status.json not available'); }
+          html += sectionTitle('三大防护机制');
+          html += '<div class="card-detail">1. <strong>防压缩</strong> -- 关键信息存知识库而非 MEMORY.md，不会被对话压缩丢失<br><br>2. <strong>遗忘曲线</strong> -- 每条有重要度（1-5）和访问次数，重要的排更前，长期没用的可清理<br><br>3. <strong>数据聚合风险</strong> -- 安全审查每晚扫描，防止敏感信息碎片拼成完整隐私</div>';
+          html += sectionTitle('使用方式');
+          html += '<div class="card-detail">发链接 -> 自动入库<br>说"记住xxx" -> 存为笔记<br>问"之前谁聊过xx" -> 语义搜索</div>';
+          html += sectionTitle('快速检索');
+          html += '<div style="display:flex; gap:0.5rem; margin-top:0.5rem;" onclick="event.stopPropagation()">';
+          html += '<input type="text" id="kb-search" placeholder="搜索知识库..." style="flex:1; padding:0.5rem 0.8rem; border-radius:8px; border:1px solid #2a2a4a; background:#0f0f1a; color:#e0e0e0; font-size:0.9rem; outline:none;" onkeydown="if(event.key===\'Enter\')searchKB()" onfocus="this.style.borderColor=\'#a78bfa\'" onblur="this.style.borderColor=\'#2a2a4a\'">';
+          html += '<button onclick="event.stopPropagation();searchKB()" style="padding:0.5rem 1rem; border-radius:8px; border:none; background:#a78bfa; color:#fff; cursor:pointer; font-size:0.9rem;">搜索</button></div>';
+          html += '<div id="kb-results" style="margin-top:0.8rem; font-size:0.85rem; color:#999;" onclick="event.stopPropagation()"></div>';
+          document.getElementById('expanded-kb').innerHTML = html;
+        }
+
+        // === Security ===
+        const sec = data.security?.details;
+        if (sec) {
+          const fixCount = (sec.fixes || []).length;
+          document.getElementById('detail-security').innerHTML = '上次检查：' + (data.security.lastUpdate || '--') + '<br>发现 ' + fixCount + ' 个问题（均已修复）';
+
+          let html = sectionTitle('六维审查');
+          (sec.checks || []).forEach(ch => {
+            html += indicator(ch.name, ch.status, ch.met ? 'indicator-met' : 'indicator-unmet');
+          });
+          if (sec.fixes && sec.fixes.length) {
+            html += sectionTitle('今日修复记录');
+            html += '<div class="card-detail">' + sec.fixes.map((f,i) => (i+1) + '. ' + f).join('<br>') + '</div>';
+          }
+          html += sectionTitle('处理原则');
+          html += '<div class="card-detail">能自己修的直接修 -> 修不了的推 TG -> 没问题不打扰</div>';
+          document.getElementById('expanded-security').innerHTML = html;
+        }
+
+        // === Cron ===
+        const cron = data.cron?.details;
+        if (cron) {
+          const jobs = cron.jobs || [];
+          const names = jobs.slice(0, 6).map(j => j.name.replace(/每日|委员会/g, '').trim());
+          document.getElementById('detail-cron').innerHTML = names.join(' | ');
+
+          let html = sectionTitle('任务列表');
+          jobs.forEach(j => {
+            html += indicator(j.name, j.schedule);
+          });
+          document.getElementById('expanded-cron').innerHTML = html;
+        }
+
+        // === Health ===
+        const health = data.health?.details;
+        if (health) {
+          const items = health.items || [];
+          const disk = items.find(i => i.name === '磁盘');
+          const proxy = items.find(i => i.name === 'claude-proxy');
+          document.getElementById('detail-health').innerHTML =
+            '电脑磁盘使用率：' + (disk ? disk.value : '--') + '（健康）<br>代理服务：' + (proxy ? proxy.value : '--');
+
+          let html = sectionTitle('系统状态');
+          items.forEach(it => {
+            html += indicator(it.name, it.value, it.met === true ? 'indicator-met' : (it.met === false ? 'indicator-unmet' : ''));
+          });
+          html += sectionTitle('架构');
+          html += '<div class="card-detail">Telegram -> OpenClaw -> claude-proxy(:8082) -> Claude Opus 4.6<br>断路器保护：连续 3 次失败自动 fast-fail 60 秒</div>';
+          document.getElementById('expanded-health').innerHTML = html;
+        }
+
+      } catch(e) { console.log('status.json not available', e); }
     }
     loadStatus();
 
