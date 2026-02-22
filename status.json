@@ -16,8 +16,8 @@
     "summary": "正常"
   },
   "cron": {
-    "lastUpdate": "02-22 10:43",
-    "summary": "9 个任务运行中"
+    "lastUpdate": "02-22 12:51",
+    "summary": "时间已错开，避免 rate limit"
   },
   "health": {
     "lastUpdate": "02-21 22:58",
