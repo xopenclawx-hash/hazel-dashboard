@@ -1,0 +1,26 @@
+{
+  "btc": {
+    "lastUpdate": "02-21 19:00",
+    "summary": "4/6 满足"
+  },
+  "report": {
+    "lastUpdate": "2026-02-21 08:00",
+    "summary": "10 条"
+  },
+  "kb": {
+    "lastUpdate": "02-21 19:06",
+    "summary": "20 条"
+  },
+  "security": {
+    "lastUpdate": "2026-02-21 17:26",
+    "summary": "正常"
+  },
+  "cron": {
+    "lastUpdate": "2026-02-21 18:30",
+    "summary": "8 个"
+  },
+  "health": {
+    "lastUpdate": "2026-02-21 18:30",
+    "summary": "4%"
+  }
+}

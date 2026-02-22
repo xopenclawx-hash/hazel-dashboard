@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hazel 状态面板</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0f0f1a; color: #e0e0e0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; padding: 2rem; }
+  h1 { text-align: center; margin-bottom: 0.5rem; color: #a78bfa; font-size: 1.8rem; }
+  .subtitle { text-align: center; color: #555; font-size: 0.85rem; margin-bottom: 2rem; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; max-width: 1200px; margin: 0 auto; }
+  .card { background: #1a1a2e; border-radius: 12px; padding: 1.5rem; border: 1px solid #2a2a4a; transition: all 0.3s; cursor: pointer; user-select: none; }
+  .card:hover { transform: translateY(-2px); border-color: #a78bfa; }
+  .card.active { border-color: #a78bfa; grid-column: 1 / -1; }
+  .card-header { display: flex; justify-content: space-between; align-items: center; }
+  .card-title { font-size: 0.85rem; color: #888; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.8rem; }
+  .card-arrow { color: #555; font-size: 0.8rem; transition: transform 0.3s; }
+  .card.active .card-arrow { transform: rotate(180deg); }
+  .card-value { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .card-detail { font-size: 0.9rem; color: #999; line-height: 1.6; }
+  .card-expanded { display: none; margin-top: 1.2rem; padding-top: 1.2rem; border-top: 1px solid #2a2a4a; font-size: 0.9rem; color: #bbb; line-height: 1.8; }
+  .card.active .card-expanded { display: block; }
+  .status-ok { color: #4ade80; }
+  .status-warn { color: #fbbf24; }
+  .status-mid { color: #60a5fa; }
+  .status-purple { color: #a78bfa; }
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; margin-right: 0.3rem; }
+  .tag-row { display: flex !important; align-items: center; gap: 0.4rem; margin-top: 0.5rem; flex-wrap: wrap; flex-direction: row; }
+  .tag-green { background: #064e3b; color: #4ade80; }
+  .tag-blue { background: #172554; color: #60a5fa; }
+  .tag-purple { background: #2e1065; color: #a78bfa; }
+  .tag-red { background: #450a0a; color: #f87171; }
+  .tag-time { background: #1a1a2e; color: #666; border: 1px solid #2a2a4a; font-size: 0.7rem; }
+  .indicator { display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid #1f1f35; }
+  .indicator:last-child { border-bottom: none; }
+  .indicator-name { color: #999; }
+  .indicator-value { font-weight: 600; }
+  .indicator-met { color: #4ade80; }
+  .indicator-unmet { color: #f87171; }
+  .section-title { color: #a78bfa; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; margin: 1rem 0 0.5rem 0; }
+  .footer { text-align: center; margin-top: 2rem; color: #555; font-size: 0.8rem; }
+</style>
+</head>
+<body>
+  <h1>Hazel 状态面板</h1>
+  <p class="subtitle">Ricky 的 AI 伙伴 -- 诞生于 2026-02-14</p>
+  <div class="grid">
+
+    <!-- BTC 抄底模型 -->
+    <div class="card" onclick="toggle(this)">
+      <div class="card-header">
+        <div class="card-title">BTC 抄底模型</div>
+        <div class="card-arrow">▼</div>
+      </div>
+      <div class="card-value status-mid">4/6 满足</div>
+      <div class="card-detail">
+        评级：中 -- 分批建仓信号<br>
+        <span style="color:#60a5fa; font-weight:600;">$68,334</span> <span style="color:#666;">|</span> 建议仓位 10-20%
+      </div>
+      <div class="tag-row"><span class="tag tag-blue">每天 9AM</span><span class="tag tag-time" id="ts-btc">上次更新：02-21 16:42</span></div>
+
+      <div class="card-expanded">
+        <div class="section-title">六大指标详情</div>
+        <div class="indicator">
+          <span class="indicator-name">K 线 RSI（周线 &lt; 30）</span>
+          <span class="indicator-value indicator-met">20.2 -- 满足</span>
+        </div>
+        <div class="indicator">
+          <span class="indicator-name">成交量萎缩（&lt; 30 日均量）</span>
+          <span class="indicator-value indicator-met">0.39x -- 满足</span>
+        </div>
+        <div class="indicator">
+          <span class="indicator-name">MVRV 比率（&lt; 1.0）</span>
+          <span class="indicator-value indicator-unmet">1.24 -- 不满足</span>
+        </div>
+        <div class="indicator">
+          <span class="indicator-name">恐惧指数（&gt; 75）</span>
+          <span class="indicator-value indicator-met">92 -- 满足</span>
+        </div>
+        <div class="indicator">
+          <span class="indicator-name">矿机关机价（接近或低于）</span>
+          <span class="indicator-value indicator-unmet">$68K vs $45-55K -- 不满足</span>
+        </div>
+        <div class="indicator">
+          <span class="indicator-name">LTH 长期持有者行为</span>
+          <span class="indicator-value indicator-met">SOPR &lt; 1 投降卖出 -- 满足</span>
+        </div>
+
+        <div class="section-title">触发条件</div>
+        <div class="indicator">
+          <span class="indicator-name">4 个以上满足</span>
+          <span class="indicator-value">分批建仓（10-20%）</span>
+        </div>
+        <div class="indicator">
+          <span class="indicator-name">5 个以上满足</span>
+          <span class="indicator-value">重仓抄底（30-50%）</span>
+        </div>
+
+        <div class="section-title">数据来源</div>
+        <div class="card-detail">
+          RSI / 成交量：CoinGecko（免费）<br>
+          MVRV：CoinMetrics 社区版（免费）<br>
+          恐惧指数：Alternative.me（免费）<br>
+          矿机关机价：Blockchain.info + 估算<br>
+          LTH 供应：Twitter xapi 搜索 Glassnode/Bitfinex 报告
+        </div>
+      </div>
+    </div>
+
+    <!-- AI 前沿速报 -->
+    <div class="card" onclick="toggle(this)">
+      <div class="card-header">
+        <div class="card-title">AI 前沿速报</div>
+        <div class="card-arrow">▼</div>
+      </div>
+      <div class="card-value status-ok">10 条</div>
+      <div class="card-detail">
+        新项目 + OpenClaw 案例<br>
+        三渠道搜索：Lists + 关注 + 关键词
+      </div>
+      <div class="tag-row"><span class="tag tag-green">每 8 小时</span><span class="tag tag-time" id="ts-report">上次更新：02-21 16:00</span></div>
+
+      <div class="card-expanded">
+        <div class="section-title">三大搜索渠道</div>
+        <div class="indicator">
+          <span class="indicator-name">渠道 1：Twitter Lists</span>
+          <span class="indicator-value">86 人（AI Wizard + Brains）</span>
+        </div>
+        <div class="indicator">
+          <span class="indicator-name">渠道 2：关注列表</span>
+          <span class="indicator-value">95 人（@CentaurDragon76）</span>
+        </div>
+        <div class="indicator">
+          <span class="indicator-name">渠道 3：关键词搜索</span>
+          <span class="indicator-value">indie builder / hackathon / AI agent</span>
+        </div>
+
+        <div class="section-title">筛选标准</div>
+        <div class="card-detail">
+          核心："谁做了什么好玩的东西"（app、工具、产品、demo）<br><br>
+          排除：大厂新闻、LLM 讨论、纯观点评论、互相吹捧、红包活动、宏观新闻<br><br>
+          互动信号：搜大佬回复别人的内容，被回复的小账号往往是好项目<br><br>
+          后 2 条专搜：openclaw / nanoclaw / clawhub 的有趣 use case
+        </div>
+
+        <div class="section-title">推送时间</div>
+        <div class="card-detail">每天 8:00 AM / 4:00 PM / 12:00 AM（EST）</div>
+      </div>
+    </div>
+
+    <!-- 知识库 -->
+    <div class="card" onclick="toggle(this)">
+      <div class="card-header">
+        <div class="card-title">知识库</div>
+        <div class="card-arrow">▼</div>
+      </div>
+      <div class="card-value status-purple">20 条</div>
+      <div class="card-detail">
+        4 链接 | 5 决定 | 6 笔记<br>
+        2 人物 | 2 推文 | 1 想法
+      </div>
+      <div class="tag-row"><span class="tag tag-purple">自动摄取</span><span class="tag tag-time" id="ts-kb">上次更新：02-21 19:06</span></div>
+
+      <div class="card-expanded">
+        <div class="section-title">技术架构</div>
+        <div class="indicator">
+          <span class="indicator-name">存储</span>
+          <span class="indicator-value">本地 SQLite</span>
+        </div>
+        <div class="indicator">
+          <span class="indicator-name">嵌入模型</span>
+          <span class="indicator-value">all-MiniLM-L6-v2（384 维）</span>
+        </div>
+        <div class="indicator">
+          <span class="indicator-name">搜索方式</span>
+          <span class="indicator-value">语义搜索 + 全文搜索</span>
+        </div>
+
+        <div class="section-title">三大防护机制</div>
+        <div class="card-detail">
+          1. <strong>防压缩</strong> -- 关键信息存知识库而非 MEMORY.md，不会被对话压缩丢失<br><br>
+          2. <strong>遗忘曲线</strong> -- 每条有重要度（1-5）和访问次数，重要的排更前，长期没用的可清理<br><br>
+          3. <strong>数据聚合风险</strong> -- 安全审查每晚扫描，防止敏感信息碎片拼成完整隐私
+        </div>
+
+        <div class="section-title">使用方式</div>
+        <div class="card-detail">
+          发链接 -> 自动入库<br>
+          说"记住xxx" -> 存为笔记<br>
+          问"之前谁聊过xx" -> 语义搜索
+        </div>
+
+        <div class="section-title">快速检索</div>
+        <div style="display:flex; gap:0.5rem; margin-top:0.5rem;" onclick="event.stopPropagation()">
+          <input type="text" id="kb-search" placeholder="搜索知识库..." style="flex:1; padding:0.5rem 0.8rem; border-radius:8px; border:1px solid #2a2a4a; background:#0f0f1a; color:#e0e0e0; font-size:0.9rem; outline:none;" onkeydown="if(event.key==='Enter')searchKB()" onfocus="this.style.borderColor='#a78bfa'" onblur="this.style.borderColor='#2a2a4a'">
+          <button onclick="event.stopPropagation();searchKB()" style="padding:0.5rem 1rem; border-radius:8px; border:none; background:#a78bfa; color:#fff; cursor:pointer; font-size:0.9rem;">搜索</button>
+        </div>
+        <div id="kb-results" style="margin-top:0.8rem; font-size:0.85rem; color:#999;" onclick="event.stopPropagation()"></div>
+      </div>
+    </div>
+
+    <!-- 安全审查委员会 -->
+    <div class="card" onclick="toggle(this)">
+      <div class="card-header">
+        <div class="card-title">安全审查委员会</div>
+        <div class="card-arrow">▼</div>
+      </div>
+      <div class="card-value status-ok">正常</div>
+      <div class="card-detail">
+        上次检查：今天 17:26<br>
+        发现 2 个问题（均已修复）
+      </div>
+      <div class="tag-row"><span class="tag tag-green">每晚 3:30</span><span class="tag tag-time" id="ts-security">上次更新：02-21 17:26</span></div>
+
+      <div class="card-expanded">
+        <div class="section-title">六维审查</div>
+        <div class="indicator">
+          <span class="indicator-name">1. Proxy 健康</span>
+          <span class="indicator-value indicator-met">正常</span>
+        </div>
+        <div class="indicator">
+          <span class="indicator-name">2. Cron 任务状态</span>
+          <span class="indicator-value indicator-met">全部运行</span>
+        </div>
+        <div class="indicator">
+          <span class="indicator-name">3. API Key 安全</span>
+          <span class="indicator-value indicator-met">无泄露</span>
+        </div>
+        <div class="indicator">
+          <span class="indicator-name">4. 磁盘 + 数据库</span>
+          <span class="indicator-value indicator-met">4%，DB 完整</span>
+        </div>
+        <div class="indicator">
+          <span class="indicator-name">5. 数据聚合风险</span>
+          <span class="indicator-value indicator-met">无风险</span>
+        </div>
+        <div class="indicator">
+          <span class="indicator-name">6. 日志错误</span>
+          <span class="indicator-value indicator-met">0 条错误</span>
+        </div>
+
+        <div class="section-title">今日修复记录</div>
+        <div class="card-detail">
+          1. xapi API key 出现在 MEMORY.md 和日志 -> 已替换为 REDACTED<br>
+          2. moltbook key 在 TOOLS.md 明文 -> 已替换<br>
+          3. Key 转存至 ~/.config/xapi/credentials.json（权限 600）
+        </div>
+
+        <div class="section-title">处理原则</div>
+        <div class="card-detail">能自己修的直接修 -> 修不了的推 TG -> 没问题不打扰</div>
+      </div>
+    </div>
+
+    <!-- 定时任务 -->
+    <div class="card" onclick="toggle(this)">
+      <div class="card-header">
+        <div class="card-title">定时任务</div>
+        <div class="card-arrow">▼</div>
+      </div>
+      <div class="card-value status-ok">8 个</div>
+      <div class="card-detail">
+        AI 速报 | BTC 模型 | 安全审查<br>
+        币圈研究 | AI 研究 | 任务清单
+      </div>
+      <div class="tag-row"><span class="tag tag-green">全部运行中</span><span class="tag tag-time" id="ts-cron">上次更新：02-21 18:30</span></div>
+
+      <div class="card-expanded">
+        <div class="section-title">任务列表</div>
+        <div class="indicator">
+          <span class="indicator-name">AI 前沿速报</span>
+          <span class="indicator-value">8AM / 4PM / 12AM EST</span>
+        </div>
+        <div class="indicator">
+          <span class="indicator-name">BTC 抄底模型</span>
+          <span class="indicator-value">每天 9AM EST</span>
+        </div>
+        <div class="indicator">
+          <span class="indicator-name">安全审查委员会</span>
+          <span class="indicator-value">每晚 3:30AM EST</span>
+        </div>
+        <div class="indicator">
+          <span class="indicator-name">币圈深度研究</span>
+          <span class="indicator-value">每天 12AM EST</span>
+        </div>
+        <div class="indicator">
+          <span class="indicator-name">AI 深度研究</span>
+          <span class="indicator-value">每天 1AM EST</span>
+        </div>
+        <div class="indicator">
+          <span class="indicator-name">每日报告推送</span>
+          <span class="indicator-value">每天 8AM EST</span>
+        </div>
+        <div class="indicator">
+          <span class="indicator-name">每日任务清单</span>
+          <span class="indicator-value">每天 9AM EST</span>
+        </div>
+        <div class="indicator">
+          <span class="indicator-name">Twitter List 同步</span>
+          <span class="indicator-value">每 2 天</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 系统健康 -->
+    <div class="card" onclick="toggle(this)">
+      <div class="card-header">
+        <div class="card-title">系统健康</div>
+        <div class="card-arrow">▼</div>
+      </div>
+      <div class="card-value status-ok">4%</div>
+      <div class="card-detail">
+        电脑磁盘使用率：4%（健康）<br>
+        代理服务：8082 端口运行中
+      </div>
+      <div class="tag-row"><span class="tag tag-green">系统正常</span><span class="tag tag-time" id="ts-health">上次更新：02-21 18:30</span></div>
+
+      <div class="card-expanded">
+        <div class="section-title">系统状态</div>
+        <div class="indicator">
+          <span class="indicator-name">磁盘</span>
+          <span class="indicator-value indicator-met">4%</span>
+        </div>
+        <div class="indicator">
+          <span class="indicator-name">claude-proxy</span>
+          <span class="indicator-value indicator-met">运行中（:8082）</span>
+        </div>
+        <div class="indicator">
+          <span class="indicator-name">活跃会话</span>
+          <span class="indicator-value">7 个</span>
+        </div>
+        <div class="indicator">
+          <span class="indicator-name">知识库 DB</span>
+          <span class="indicator-value indicator-met">完整性通过</span>
+        </div>
+        <div class="indicator">
+          <span class="indicator-name">Session 文件</span>
+          <span class="indicator-value">7 个 / 4.3MB</span>
+        </div>
+
+        <div class="section-title">架构</div>
+        <div class="card-detail">
+          Telegram -> OpenClaw -> claude-proxy(:8082) -> Claude Opus 4.6<br>
+          断路器保护：连续 3 次失败自动 fast-fail 60 秒
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="footer">Hazel v1.3 -- 由 OpenClaw 驱动</div>
+
+  <script>
+    function toggle(card) {
+      const wasActive = card.classList.contains('active');
+      document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+      if (!wasActive) card.classList.add('active');
+    }
+
+    // 自动加载时间戳
+    async function loadStatus() {
+      try {
+        const res = await fetch('status.json?t=' + Date.now());
+        const data = await res.json();
+        const ids = { btc: 'ts-btc', report: 'ts-report', kb: 'ts-kb', security: 'ts-security', cron: 'ts-cron', health: 'ts-health' };
+        for (const [key, elId] of Object.entries(ids)) {
+          const el = document.getElementById(elId);
+          if (el && data[key]?.lastUpdate) {
+            el.textContent = '上次更新：' + data[key].lastUpdate;
+          }
+        }
+      } catch(e) { console.log('status.json not available'); }
+    }
+    loadStatus();
+
+    async function searchKB() {
+      const q = document.getElementById('kb-search').value.trim();
+      const r = document.getElementById('kb-results');
+      if (!q) { r.innerHTML = '<span style="color:#f87171">请输入搜索词</span>'; return; }
+      r.innerHTML = '<span style="color:#a78bfa">搜索中...</span>';
+      try {
+        const res = await fetch('http://localhost:3456/api/kb-search?q=' + encodeURIComponent(q));
+        if (!res.ok) {
+          r.innerHTML = '<span style="color:#fbbf24">搜索服务未启动，发 TG 给 Hazel："搜一下 ' + q + '"</span>';
+          return;
+        }
+        const data = await res.json();
+        if (!data.results?.length) { r.innerHTML = '没有找到相关内容'; return; }
+        r.innerHTML = data.results.map(i =>
+          '<div style="padding:0.4rem 0;border-bottom:1px solid #1f1f35">' +
+          '<span style="color:#a78bfa">[' + i.type + ']</span> ' +
+          '<strong style="color:#e0e0e0">' + i.title + '</strong><br>' +
+          '<span>' + (i.content||'').slice(0,120) + '...</span></div>'
+        ).join('');
+      } catch(e) {
+        r.innerHTML = '<span style="color:#fbbf24">搜索服务未启动，发 TG 给 Hazel："搜一下 ' + q + '"</span>';
+      }
+    }
+  </script>
+</body>
+</html>
