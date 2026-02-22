@@ -378,7 +378,10 @@
       if (!q) { r.innerHTML = '<span style="color:#f87171">请输入搜索词</span>'; return; }
       r.innerHTML = '<span style="color:#a78bfa">搜索中...</span>';
       try {
-        const res = await fetch('http://localhost:3456/api/kb-search?q=' + encodeURIComponent(q));
+        const apiBase = location.hostname === 'localhost' || location.hostname === '127.0.0.1'
+          ? 'http://localhost:3456'
+          : location.origin;
+        const res = await fetch(apiBase + '/api/kb-search?q=' + encodeURIComponent(q));
         if (!res.ok) {
           r.innerHTML = '<span style="color:#fbbf24">搜索服务未启动，发 TG 给 Hazel："搜一下 ' + q + '"</span>';
           return;

@@ -34,3 +34,9 @@ with open('$STATUS_FILE', 'w') as f:
 sed -i '' "s|id=\"ts-$MODULE\">上次更新：[^<]*<|id=\"ts-$MODULE\">上次更新：$NOW<|" "$HTML_FILE"
 
 echo "Updated $MODULE: $NOW"
+
+# 自动推送到 GitHub Pages
+cd /Users/rickywang/Projects/hazel-demo
+git add -A
+git commit -m "Update $MODULE: $NOW" --quiet 2>/dev/null
+git push --quiet 2>/dev/null &
