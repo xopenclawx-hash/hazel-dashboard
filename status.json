@@ -41,8 +41,8 @@
     }
   },
   "report": {
-    "lastUpdate": "02-23 16:30",
-    "summary": "❌ 失败 - xapi 余额不足",
+    "lastUpdate": "02-24 00:30",
+    "summary": "❌ xapi 余额不足(已通知)",
     "details": {
       "channels": [
         {
