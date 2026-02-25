@@ -41,8 +41,8 @@
     }
   },
   "report": {
-    "lastUpdate": "02-25 00:31",
-    "summary": "10 条",
+    "lastUpdate": "02-25 08:31",
+    "summary": "❌ 失败 — xAPI余额不足+Brave无Key",
     "details": {
       "channels": [
         {
