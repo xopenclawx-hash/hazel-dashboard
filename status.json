@@ -41,8 +41,8 @@
     }
   },
   "report": {
-    "lastUpdate": "02-25 16:30",
-    "summary": "❌ 失败 — xAPI余额仍不足",
+    "lastUpdate": "02-26 00:30",
+    "summary": "❌ 跳过 — xAPI仍欠费，深夜不打扰",
     "details": {
       "channels": [
         {
