@@ -41,8 +41,8 @@
     }
   },
   "report": {
-    "lastUpdate": "02-26 00:30",
-    "summary": "❌ 跳过 — xAPI仍欠费，深夜不打扰",
+    "lastUpdate": "02-26 08:31",
+    "summary": "失败 - xapi余额不足+无Brave key",
     "details": {
       "channels": [
         {
