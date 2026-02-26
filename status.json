@@ -41,7 +41,7 @@
     }
   },
   "report": {
-    "lastUpdate": "02-26 08:31",
+    "lastUpdate": "02-26 14:01",
     "summary": "失败 - xapi余额不足+无Brave key",
     "details": {
       "channels": [
