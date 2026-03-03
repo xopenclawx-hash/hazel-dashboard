@@ -125,7 +125,7 @@
     }
   },
   "cron": {
-    "lastUpdate": "02-27 09:05",
+    "lastUpdate": "03-03 09:04",
     "summary": "List同步完成",
     "details": {
       "jobs": [
