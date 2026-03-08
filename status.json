@@ -82,8 +82,8 @@
     }
   },
   "security": {
-    "lastUpdate": "03-07 03:30",
-    "summary": "发现4个warning",
+    "lastUpdate": "03-08 03:30",
+    "summary": "发现4个warning，已修复1个",
     "details": {
       "checks": [
         {
