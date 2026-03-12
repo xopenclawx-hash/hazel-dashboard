@@ -82,8 +82,8 @@
     }
   },
   "security": {
-    "lastUpdate": "03-11 03:30",
-    "summary": "3个warning，无critical",
+    "lastUpdate": "03-12 03:30",
+    "summary": "正常 - 3个低风险warning",
     "details": {
       "checks": [
         {
